@@ -3,7 +3,7 @@ package br.senai.sp.jandira.model;
 public class Fabricante {
 
 	private String nome;
-	private String sac;
+	private String site;
 	private String localização;
 
 	public String getNome() {
@@ -14,14 +14,6 @@ public class Fabricante {
 		this.nome = nome;
 	}
 
-	public String getSac() {
-		return sac;
-	}
-
-	public void setSac(String sac) {
-		this.sac = sac;
-	}
-
 	public String getLocalização() {
 		return localização;
 	}
@@ -29,5 +21,15 @@ public class Fabricante {
 	public void setLocalização(String localização) {
 		this.localização = localização;
 	}
+
+	public String getSite() {
+		return site;
+	}
+
+	public void setSite(String site) {
+		this.site = site;
+	}
+	
+	
 
 }

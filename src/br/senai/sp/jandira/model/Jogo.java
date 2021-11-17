@@ -1,6 +1,6 @@
 package br.senai.sp.jandira.model;
 
-public class jogo {
+public class Jogo {
 	private String titulo;
 	private Fabricante fabricante;
 	private boolean zerado;
