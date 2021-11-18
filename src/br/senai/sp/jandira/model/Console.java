@@ -9,20 +9,20 @@ public enum Console {
 	NINTENDO3DS("Nintendo 3DS", 800);
 	
 	
-	private String tipoDeConsole;
+	private String descricao;
 	private int valorConsole;
 	
-	private Console(String tipoDeConsole, int valorConsole) {
-		this.tipoDeConsole = tipoDeConsole;
+	private Console(String descricao, int valorConsole) {
+		this.descricao = descricao;
 		this.valorConsole = valorConsole;
 	}
 	
-	public String getTipoDeConsole() {
-		return tipoDeConsole;
+	public String getDescricao() {
+		return this.descricao;
 	}
 	
 	public int getValorConsole() {
-		return valorConsole;
+		return this.valorConsole;
 	}
 
 }

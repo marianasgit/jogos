@@ -3,10 +3,10 @@ package br.senai.sp.jandira.model;
 public class Jogo {
 	private String titulo;
 	private Fabricante fabricante;
-	private boolean zerado;
+	private boolean jogoZerado;
 	private Console console;
 	private double valor;
-	private String observação;
+	private String observacao;
 
 	public String getTitulo() {
 		return titulo;
@@ -24,12 +24,12 @@ public class Jogo {
 		this.fabricante = fabricante;
 	}
 
-	public boolean isZerado() {
-		return zerado;
+	public boolean isJogoZerado() {
+		return jogoZerado;
 	}
 
-	public void setZerado(boolean zerado) {
-		this.zerado = zerado;
+	public void setJogoZerado(boolean zerado) {
+		this.jogoZerado = zerado;
 	}
 
 	public Console getConsole() {
@@ -48,12 +48,12 @@ public class Jogo {
 		this.valor = valor;
 	}
 
-	public String getObservação() {
-		return observação;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setObservação(String observação) {
-		this.observação = observação;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
 }

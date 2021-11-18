@@ -8,15 +8,17 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		//FabricanteRepository fabricantes = new FabricanteRepository();
+		FabricanteRepository fabricantes = new FabricanteRepository();
 		
-		//for (Fabricante fabricanteAtual : fabricantes.listarTodos()) {
-		//	System.out.println(fabricanteAtual.getNome());
-		//}
+		for (Fabricante fabricanteAtual : fabricantes.listarTodos()) {
+			System.out.println(fabricanteAtual.getNome());
+		}
 		
 		FrameMeusJogos frame = new FrameMeusJogos();
 		frame.setVisible(true);
 
+		
+		
 	}
 
 }

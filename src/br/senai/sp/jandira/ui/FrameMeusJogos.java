@@ -2,6 +2,8 @@ package br.senai.sp.jandira.ui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.senai.sp.jandira.model.Console;
 import br.senai.sp.jandira.model.Fabricante;
+import br.senai.sp.jandira.model.Jogo;
 import br.senai.sp.jandira.repository.FabricanteRepository;
 
 import javax.swing.JLabel;
@@ -49,7 +52,7 @@ public class FrameMeusJogos extends JFrame {
 	public FrameMeusJogos() {
 		setTitle("Gerenciador de Jogos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 377);
+		setBounds(100, 100, 486, 377);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,9 +71,18 @@ public class FrameMeusJogos extends JFrame {
 		lblFabricante.setBounds(20, 56, 60, 14);
 		contentPane.add(lblFabricante);
 		
+		DefaultComboBoxModel<String> comboModelFabricante = new DefaultComboBoxModel<String>();
+		
+		FabricanteRepository fabricantes = new FabricanteRepository();
+		
+		for (Fabricante fabricanteAtual : fabricantes.listarTodos()) {
+			comboModelFabricante.addElement(fabricanteAtual.getNome());
+		}
+		
 		JComboBox comboFabricante = new JComboBox();
 		comboFabricante.setBounds(83, 52, 86, 22);
 		contentPane.add(comboFabricante);
+		comboFabricante.setModel(comboModelFabricante);
 		
 		JCheckBox chckbxZerado = new JCheckBox("Zerado");
 		chckbxZerado.setBounds(83, 84, 78, 23);
@@ -80,21 +92,16 @@ public class FrameMeusJogos extends JFrame {
 		lblConsole.setBounds(33, 128, 46, 14);
 		contentPane.add(lblConsole);
 		
-		DefaultComboBoxModel<FabricanteRepository> comboModelFabricante = new DefaultComboBoxModel<FabricanteRepository>();
-		
-		FabricanteRepository fabricantes = new FabricanteRepository();
-		
-		for (Fabricante fabricanteAtual : fabricantes.getFabricantes()) {
-			comboModelFabricante.addElement(fabricantes);
-		}
+		DefaultComboBoxModel<String> comboModelConsole = new DefaultComboBoxModel<String>();
 		
 		JComboBox comboConsole = new JComboBox();
 		comboConsole.setBounds(83, 124, 86, 22);
 		contentPane.add(comboConsole);
+		comboConsole.setModel(comboModelConsole);
 		
-		DefaultComboBoxModel<String> comboModelConsole = new DefaultComboBoxModel<String>();
-		
-		
+		for (Console descricao : Console.values()) {
+			comboModelConsole.addElement(descricao.getDescricao());
+		}
 		
 		JLabel lblValor = new JLabel("Valor estimado:");
 		lblValor.setBounds(1, 169, 78, 14);
@@ -119,7 +126,7 @@ public class FrameMeusJogos extends JFrame {
 		contentPane.add(lblMeusJogos);
 		
 		txtMeusJogos = new JTextField();
-		txtMeusJogos.setBounds(260, 53, 149, 203);
+		txtMeusJogos.setBounds(261, 52, 149, 203);
 		contentPane.add(txtMeusJogos);
 		txtMeusJogos.setColumns(10);
 		
@@ -134,10 +141,20 @@ public class FrameMeusJogos extends JFrame {
 		JButton btnSetaDireita = new JButton(">");
 		btnSetaDireita.setBounds(335, 288, 89, 23);
 		contentPane.add(btnSetaDireita);
+		
+		chckbxZerado.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Jogo jogo = new Jogo();
+				
+				jogo.setJogoZerado(chckbxZerado.isSelected());
+				
+			}
+		});
 	}
 
-	private Object FabricanteRepository() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+
 }
