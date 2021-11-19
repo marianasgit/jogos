@@ -40,12 +40,12 @@ public class Jogo {
 		this.console = console;
 	}
 
-	public double getValor() {
-		return valor;
+	public String getValor() {
+		return String.valueOf(valor);
 	}
 
-	public void setValor(double valor) {
-		this.valor = valor;
+	public void setValor(String valor) {
+		this.valor = Double.parseDouble(valor);
 	}
 
 	public String getObservacao() {
@@ -54,6 +54,11 @@ public class Jogo {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public void setFabricante(Object selectedItem) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

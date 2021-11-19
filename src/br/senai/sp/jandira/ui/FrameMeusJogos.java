@@ -8,11 +8,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import br.senai.sp.jandira.model.Console;
 import br.senai.sp.jandira.model.Fabricante;
 import br.senai.sp.jandira.model.Jogo;
 import br.senai.sp.jandira.repository.FabricanteRepository;
+import br.senai.sp.jandira.repository.JogosRepository;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -20,7 +23,10 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JList;
 
 public class FrameMeusJogos extends JFrame {
 
@@ -28,7 +34,7 @@ public class FrameMeusJogos extends JFrame {
 	private JTextField txtTitulo;
 	private JTextField txtValor;
 	private JTextField txtObservacoes;
-	private JTextField txtMeusJogos;
+	private int posicao;
 
 	/**
 	 * Launch the application.
@@ -125,11 +131,6 @@ public class FrameMeusJogos extends JFrame {
 		lblMeusJogos.setBounds(282, 24, 78, 14);
 		contentPane.add(lblMeusJogos);
 		
-		txtMeusJogos = new JTextField();
-		txtMeusJogos.setBounds(261, 52, 149, 203);
-		contentPane.add(txtMeusJogos);
-		txtMeusJogos.setColumns(10);
-		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(33, 288, 128, 23);
 		contentPane.add(btnSalvar);
@@ -142,6 +143,16 @@ public class FrameMeusJogos extends JFrame {
 		btnSetaDireita.setBounds(335, 288, 89, 23);
 		contentPane.add(btnSetaDireita);
 		
+		JScrollPane scrollPaneMeusJogos = new JScrollPane();
+		scrollPaneMeusJogos.setBounds(247, 56, 174, 202);
+		contentPane.add(scrollPaneMeusJogos);
+		
+		JList listMeusJogos = new JList();
+		scrollPaneMeusJogos.setViewportView(listMeusJogos);
+		
+		DefaultListModel<String> modelJogos = new DefaultListModel<String>();
+		listMeusJogos.setModel(modelJogos);
+		
 		chckbxZerado.addActionListener(new ActionListener() {
 			
 			@Override
@@ -153,8 +164,61 @@ public class FrameMeusJogos extends JFrame {
 				
 			}
 		});
+		
+		
+		
+		JogosRepository jogos = new JogosRepository(3);
+		
+		btnSalvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Jogo jogo = new Jogo();
+				jogo.setTitulo(txtTitulo.getText());
+				jogo.setObservacao(txtObservacoes.getText());
+				jogo.setConsole(determinarConsole(comboConsole.getSelectedIndex()));
+				jogo.setJogoZerado(rootPaneCheckingEnabled);
+				jogo.setValor(txtValor.getText());
+				jogo.setFabricante(comboFabricante.getSelectedItem());
+				
+				jogos.gravar(jogo, posicao);
+				
+				modelJogos.addElement(jogo.getTitulo());
+				
+				posicao++;
+			
+			}
+			
+		});
+		
+		listMeusJogos.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				Jogo jogo = jogos.listarJogo(listMeusJogos.getSelectedIndex());
+				txtTitulo.setText(jogo.getTitulo());
+				txtObservacoes.setText(jogo.getObservacao());
+				txtValor.setText(jogo.getValor());
+				comboConsole.setSelectedIndex(jogo.getConsole().ordinal());
+			}
+		});
+	}
+		private Console determinarConsole(int consoleSelecionado) {
+			if (consoleSelecionado == 0) {
+				return Console.PLAYSTATION4;
+			} else if (consoleSelecionado == 1) {
+				return Console.NINTENDOWII;
+			} else if (consoleSelecionado == 2) {
+				return Console.NINTENDOSWITCH;
+			} else if (consoleSelecionado == 3) {
+				return Console.XBOXONE;
+			} else {
+				return Console.NINTENDO3DS;
+
+			}
+		}
+		
 	}
 
-	
 
-}
