@@ -1,6 +1,5 @@
 package br.senai.sp.jandira.ui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,13 +20,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import java.awt.Color;
+import java.awt.Font;
 
 public class FrameMeusJogos extends JFrame {
 
@@ -36,6 +35,9 @@ public class FrameMeusJogos extends JFrame {
 	private JTextField txtValor;
 	private JTextField txtObservacoes;
 	private int posicao;
+	private FabricanteRepository fabricantes = new FabricanteRepository();
+	private DefaultComboBoxModel<String> comboModelFabricante = new DefaultComboBoxModel<String>();
+	private JComboBox<String> comboFabricante = new JComboBox<String>();
 
 	/**
 	 * Launch the application.
@@ -57,52 +59,61 @@ public class FrameMeusJogos extends JFrame {
 	 * Create the frame.
 	 */
 	public FrameMeusJogos() {
+		setBackground(new Color(0, 0, 128));
 		setTitle("Gerenciador de Jogos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 486, 377);
+		setBounds(100, 100, 687, 417);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblTitulo = new JLabel("T\u00EDtulo do jogo:");
-		lblTitulo.setBounds(10, 24, 69, 14);
+		lblTitulo.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
+		lblTitulo.setForeground(new Color(255, 255, 255));
+		lblTitulo.setBounds(51, 50, 78, 14);
 		contentPane.add(lblTitulo);
 		
 		txtTitulo = new JTextField();
-		txtTitulo.setBounds(83, 21, 86, 20);
+		txtTitulo.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		txtTitulo.setBounds(141, 44, 184, 28);
 		contentPane.add(txtTitulo);
 		txtTitulo.setColumns(10);
 		
 		JLabel lblFabricante = new JLabel("Fabricante:");
-		lblFabricante.setBounds(20, 56, 60, 14);
+		lblFabricante.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
+		lblFabricante.setForeground(new Color(255, 255, 255));
+		lblFabricante.setBounds(65, 87, 64, 14);
 		contentPane.add(lblFabricante);
 		
-		DefaultComboBoxModel<String> comboModelFabricante = new DefaultComboBoxModel<String>();
+		//DefaultComboBoxModel<String> comboModelFabricante = new DefaultComboBoxModel<String>();
 		
-		FabricanteRepository fabricantes = new FabricanteRepository();
 		
 		for (Fabricante fabricanteAtual : fabricantes.listarTodos()) {
 			comboModelFabricante.addElement(fabricanteAtual.getNome());
 		}
 		
-		JComboBox comboFabricante = new JComboBox();
-		comboFabricante.setBounds(83, 52, 86, 22);
+		//JComboBox comboFabricante = new JComboBox();
+		comboFabricante.setBounds(141, 83, 184, 28);
 		contentPane.add(comboFabricante);
 		comboFabricante.setModel(comboModelFabricante);
 		
-		JCheckBox chckbxZerado = new JCheckBox("Zerado");
-		chckbxZerado.setBounds(83, 84, 78, 23);
+		JCheckBox chckbxZerado = new JCheckBox("Este jogo foi zerado");
+		chckbxZerado.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
+		chckbxZerado.setBounds(141, 123, 184, 23);
 		contentPane.add(chckbxZerado);
 		
 		JLabel lblConsole = new JLabel("Console:");
-		lblConsole.setBounds(33, 128, 46, 14);
+		lblConsole.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
+		lblConsole.setForeground(new Color(255, 255, 255));
+		lblConsole.setBounds(82, 156, 47, 14);
 		contentPane.add(lblConsole);
 		
 		DefaultComboBoxModel<String> comboModelConsole = new DefaultComboBoxModel<String>();
 		
 		JComboBox comboConsole = new JComboBox();
-		comboConsole.setBounds(83, 124, 86, 22);
+		comboConsole.setBounds(141, 153, 184, 28);
 		contentPane.add(comboConsole);
 		comboConsole.setModel(comboModelConsole);
 		
@@ -111,41 +122,52 @@ public class FrameMeusJogos extends JFrame {
 		}
 		
 		JLabel lblValor = new JLabel("Valor estimado:");
-		lblValor.setBounds(1, 169, 78, 14);
+		lblValor.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
+		lblValor.setForeground(new Color(255, 255, 255));
+		lblValor.setBounds(39, 196, 90, 14);
 		contentPane.add(lblValor);
 		
 		txtValor = new JTextField();
-		txtValor.setBounds(83, 166, 86, 20);
+		txtValor.setBounds(143, 192, 182, 28);
 		contentPane.add(txtValor);
 		txtValor.setColumns(10);
 		
 		JLabel lblObservacoes = new JLabel("Observa\u00E7\u00F5es:");
-		lblObservacoes.setBounds(10, 201, 69, 14);
+		lblObservacoes.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
+		lblObservacoes.setForeground(new Color(255, 255, 255));
+		lblObservacoes.setBounds(57, 241, 72, 14);
 		contentPane.add(lblObservacoes);
 		
 		txtObservacoes = new JTextField();
-		txtObservacoes.setBounds(83, 197, 86, 53);
+		txtObservacoes.setBounds(143, 241, 182, 59);
 		contentPane.add(txtObservacoes);
 		txtObservacoes.setColumns(10);
 		
 		JLabel lblMeusJogos = new JLabel("Meus Jogos:");
-		lblMeusJogos.setBounds(282, 24, 78, 14);
+		lblMeusJogos.setForeground(new Color(255, 255, 255));
+		lblMeusJogos.setFont(new Font("Century Schoolbook", Font.BOLD, 14));
+		lblMeusJogos.setBounds(489, 19, 115, 20);
 		contentPane.add(lblMeusJogos);
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(33, 288, 128, 23);
+		btnSalvar.setBackground(new Color(0, 255, 0));
+		btnSalvar.setForeground(new Color(0, 0, 0));
+		btnSalvar.setFont(new Font("Century Schoolbook", Font.PLAIN, 14));
+		btnSalvar.setBounds(166, 315, 143, 34);
 		contentPane.add(btnSalvar);
 		
 		JButton btnSetaEsquerda = new JButton("<");
-		btnSetaEsquerda.setBounds(247, 288, 89, 23);
+		btnSetaEsquerda.setBackground(new Color(51, 204, 0));
+		btnSetaEsquerda.setBounds(449, 344, 89, 23);
 		contentPane.add(btnSetaEsquerda);
 		
 		JButton btnSetaDireita = new JButton(">");
-		btnSetaDireita.setBounds(335, 288, 89, 23);
+		btnSetaDireita.setBackground(new Color(51, 204, 0));
+		btnSetaDireita.setBounds(537, 344, 89, 23);
 		contentPane.add(btnSetaDireita);
 		
 		JScrollPane scrollPaneMeusJogos = new JScrollPane();
-		scrollPaneMeusJogos.setBounds(247, 56, 174, 202);
+		scrollPaneMeusJogos.setBounds(424, 38, 227, 311);
 		contentPane.add(scrollPaneMeusJogos);
 		
 		JList listMeusJogos = new JList();
@@ -153,6 +175,12 @@ public class FrameMeusJogos extends JFrame {
 		
 		DefaultListModel<String> modelJogos = new DefaultListModel<String>();
 		listMeusJogos.setModel(modelJogos);
+		
+		JLabel lblCadastrar = new JLabel("Cadastrar novo jogo:");
+		lblCadastrar.setFont(new Font("Century Schoolbook", Font.BOLD, 14));
+		lblCadastrar.setForeground(new Color(255, 255, 255));
+		lblCadastrar.setBounds(83, 11, 158, 28);
+		contentPane.add(lblCadastrar);
 		
 		chckbxZerado.addActionListener(new ActionListener() {
 			
@@ -181,13 +209,13 @@ public class FrameMeusJogos extends JFrame {
 				jogo.setConsole(determinarConsole(comboConsole.getSelectedIndex()));
 				jogo.setJogoZerado(chckbxZerado.isSelected());
 				jogo.setValor(txtValor.getText());
+				jogo.setFabricante(determinarFabricante());
 				
 				jogos.gravar(jogo, posicao);
 				
 				modelJogos.addElement(jogo.getTitulo());
 				
 				posicao++;
-			
 			}
 			
 		});
@@ -202,13 +230,11 @@ public class FrameMeusJogos extends JFrame {
 				txtValor.setText(jogo.getValor());
 				comboConsole.setSelectedIndex(jogo.getConsole().ordinal());
 				chckbxZerado.setSelected(jogo.isJogoZerado());
-				//comboFabricante.setSelectedIndex(jogo.getFabricante);
+				comboFabricante.setSelectedIndex(indexFabricante());
 				
-				
-				System.out.println(jogo.getFabricante());
-				System.out.println(jogo.getConsole());
 			}
 		});
+		
 	}
 		private Console determinarConsole(int consoleSelecionado) {
 			if (consoleSelecionado == 0) {
@@ -225,6 +251,35 @@ public class FrameMeusJogos extends JFrame {
 			}
 		}
 		
+		private Fabricante determinarFabricante () {
+			if (comboFabricante.getSelectedIndex() == 0) {
+				return fabricantes.listarFabricante(0);
+			} else if (comboFabricante.getSelectedIndex()== 1) {
+				return fabricantes.listarFabricante(1);
+			} else if (comboFabricante.getSelectedIndex() == 2) {
+				return fabricantes.listarFabricante(2);
+			} else if (comboFabricante.getSelectedIndex() == 3) {
+				return fabricantes.listarFabricante(3);
+			} else {
+				return fabricantes.listarFabricante(4);
+
+			}
+		}
+		
+		private int indexFabricante () {
+			if (comboFabricante.getSelectedIndex() == 0) {
+				return 0;
+			} else if (comboFabricante.getSelectedIndex()== 1) {
+				return 1;
+			} else if (comboFabricante.getSelectedIndex() == 2) {
+				return 2;
+			} else if (comboFabricante.getSelectedIndex() == 3) {
+				return 3;
+			} else {
+				return 4;
+
+			}
+		}
 	}
 
 
