@@ -37,6 +37,10 @@ public class FabricanteRepository {
 		
 	}
 	
+//	public Fabricante getNome(int posicao) {
+//		return fabricantes[posicao].getNome();
+//	}
+	
 	public Fabricante[] getFabricantes() {
 		return fabricantes;
 	}

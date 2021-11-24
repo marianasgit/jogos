@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -178,9 +179,8 @@ public class FrameMeusJogos extends JFrame {
 				jogo.setTitulo(txtTitulo.getText());
 				jogo.setObservacao(txtObservacoes.getText());
 				jogo.setConsole(determinarConsole(comboConsole.getSelectedIndex()));
-				jogo.setJogoZerado(rootPaneCheckingEnabled);
+				jogo.setJogoZerado(chckbxZerado.isSelected());
 				jogo.setValor(txtValor.getText());
-				jogo.setFabricante(comboFabricante.getSelectedItem());
 				
 				jogos.gravar(jogo, posicao);
 				
@@ -201,6 +201,12 @@ public class FrameMeusJogos extends JFrame {
 				txtObservacoes.setText(jogo.getObservacao());
 				txtValor.setText(jogo.getValor());
 				comboConsole.setSelectedIndex(jogo.getConsole().ordinal());
+				chckbxZerado.setSelected(jogo.isJogoZerado());
+				//comboFabricante.setSelectedIndex(jogo.getFabricante);
+				
+				
+				System.out.println(jogo.getFabricante());
+				System.out.println(jogo.getConsole());
 			}
 		});
 	}

@@ -56,9 +56,4 @@ public class Jogo {
 		this.observacao = observacao;
 	}
 
-	public void setFabricante(Object selectedItem) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
