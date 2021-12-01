@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.ui;
 
+import java.util.Arrays;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -230,7 +231,7 @@ public class FrameMeusJogos extends JFrame {
 				txtValor.setText(jogo.getValor());
 				comboConsole.setSelectedIndex(jogo.getConsole().ordinal());
 				chckbxZerado.setSelected(jogo.isJogoZerado());
-				comboFabricante.setSelectedIndex(indexFabricante());
+				comboFabricante.setSelectedIndex(Arrays.asList(fabricantes.getFabricantes()).indexOf(jogo.getFabricante()));
 				
 			}
 		});
@@ -266,20 +267,6 @@ public class FrameMeusJogos extends JFrame {
 			}
 		}
 		
-		private int indexFabricante () {
-			if (comboFabricante.getSelectedIndex() == 0) {
-				return 0;
-			} else if (comboFabricante.getSelectedIndex()== 1) {
-				return 1;
-			} else if (comboFabricante.getSelectedIndex() == 2) {
-				return 2;
-			} else if (comboFabricante.getSelectedIndex() == 3) {
-				return 3;
-			} else {
-				return 4;
-
-			}
-		}
 	}
 
 
