@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class FrameMeusJogos extends JFrame {
 
@@ -71,9 +72,10 @@ public class FrameMeusJogos extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblTitulo = new JLabel("T\u00EDtulo do jogo:");
-		lblTitulo.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
-		lblTitulo.setForeground(new Color(255, 255, 255));
-		lblTitulo.setBounds(51, 50, 78, 14);
+		lblTitulo.setBackground(Color.WHITE);
+		lblTitulo.setFont(new Font("Century Schoolbook", Font.BOLD, 13));
+		lblTitulo.setForeground(Color.YELLOW);
+		lblTitulo.setBounds(36, 45, 105, 23);
 		contentPane.add(lblTitulo);
 		
 		txtTitulo = new JTextField();
@@ -83,9 +85,9 @@ public class FrameMeusJogos extends JFrame {
 		txtTitulo.setColumns(10);
 		
 		JLabel lblFabricante = new JLabel("Fabricante:");
-		lblFabricante.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
-		lblFabricante.setForeground(new Color(255, 255, 255));
-		lblFabricante.setBounds(65, 87, 64, 14);
+		lblFabricante.setFont(new Font("Century Schoolbook", Font.BOLD, 13));
+		lblFabricante.setForeground(Color.YELLOW);
+		lblFabricante.setBounds(57, 85, 80, 22);
 		contentPane.add(lblFabricante);
 		
 		//DefaultComboBoxModel<String> comboModelFabricante = new DefaultComboBoxModel<String>();
@@ -106,9 +108,9 @@ public class FrameMeusJogos extends JFrame {
 		contentPane.add(chckbxZerado);
 		
 		JLabel lblConsole = new JLabel("Console:");
-		lblConsole.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
-		lblConsole.setForeground(new Color(255, 255, 255));
-		lblConsole.setBounds(82, 156, 47, 14);
+		lblConsole.setFont(new Font("Century Schoolbook", Font.BOLD, 13));
+		lblConsole.setForeground(Color.YELLOW);
+		lblConsole.setBounds(69, 159, 62, 14);
 		contentPane.add(lblConsole);
 		
 		DefaultComboBoxModel<String> comboModelConsole = new DefaultComboBoxModel<String>();
@@ -123,9 +125,9 @@ public class FrameMeusJogos extends JFrame {
 		}
 		
 		JLabel lblValor = new JLabel("Valor estimado:");
-		lblValor.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
-		lblValor.setForeground(new Color(255, 255, 255));
-		lblValor.setBounds(39, 196, 90, 14);
+		lblValor.setFont(new Font("Century Schoolbook", Font.BOLD, 13));
+		lblValor.setForeground(Color.YELLOW);
+		lblValor.setBounds(24, 196, 105, 14);
 		contentPane.add(lblValor);
 		
 		txtValor = new JTextField();
@@ -134,9 +136,9 @@ public class FrameMeusJogos extends JFrame {
 		txtValor.setColumns(10);
 		
 		JLabel lblObservacoes = new JLabel("Observa\u00E7\u00F5es:");
-		lblObservacoes.setFont(new Font("Century Schoolbook", Font.PLAIN, 12));
-		lblObservacoes.setForeground(new Color(255, 255, 255));
-		lblObservacoes.setBounds(57, 241, 72, 14);
+		lblObservacoes.setFont(new Font("Century Schoolbook", Font.BOLD, 13));
+		lblObservacoes.setForeground(Color.YELLOW);
+		lblObservacoes.setBounds(36, 250, 95, 14);
 		contentPane.add(lblObservacoes);
 		
 		txtObservacoes = new JTextField();
@@ -180,8 +182,13 @@ public class FrameMeusJogos extends JFrame {
 		JLabel lblCadastrar = new JLabel("Cadastrar novo jogo:");
 		lblCadastrar.setFont(new Font("Century Schoolbook", Font.BOLD, 14));
 		lblCadastrar.setForeground(new Color(255, 255, 255));
-		lblCadastrar.setBounds(83, 11, 158, 28);
+		lblCadastrar.setBounds(154, 6, 158, 28);
 		contentPane.add(lblCadastrar);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Mariana Gomes\\Downloads\\background jogos.jpg"));
+		lblNewLabel.setBounds(0, 10, 673, 370);
+		contentPane.add(lblNewLabel);
 		
 		chckbxZerado.addActionListener(new ActionListener() {
 			
@@ -217,6 +224,8 @@ public class FrameMeusJogos extends JFrame {
 				modelJogos.addElement(jogo.getTitulo());
 				
 				posicao++;
+				
+				
 			}
 			
 		});
@@ -233,6 +242,24 @@ public class FrameMeusJogos extends JFrame {
 				chckbxZerado.setSelected(jogo.isJogoZerado());
 				comboFabricante.setSelectedIndex(Arrays.asList(fabricantes.getFabricantes()).indexOf(jogo.getFabricante()));
 				
+			}
+		});
+		
+		
+		btnSetaEsquerda.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listMeusJogos.setSelectedIndex(listMeusJogos.getSelectedIndex()-1);
+			}
+		});
+		
+		btnSetaDireita.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				listMeusJogos.setSelectedIndex(listMeusJogos.getSelectedIndex()+1);
 			}
 		});
 		
@@ -266,7 +293,6 @@ public class FrameMeusJogos extends JFrame {
 
 			}
 		}
-		
 	}
 
 
